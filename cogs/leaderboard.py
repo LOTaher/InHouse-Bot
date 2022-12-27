@@ -6,7 +6,6 @@ from pymongo import MongoClient
 from discord.ui import Button, View
 import json
 
-
 with open("config.json", "r") as f:
     data = json.load(f)
     DATABASE = data['DATABASE']
@@ -24,14 +23,12 @@ class Leaderboard(commands.Cog):
         rankings = collection.find().sort("wins", -1)
         i = 1
         embed = discord.Embed(title = f"Wins Leaderboard")
-        
         win_str = ""
         emotes = ["🥇", "🥈", "🥉"]
         for x in rankings:
             user_wins = x["wins"]
             if i < 4: 
                 win_str += f"{emotes[i-1]} <@{x['_id']}>     |     {user_wins} 🏆\n"
-                
             else:
                 win_str += f"{i}. <@{x['_id']}>     |     {user_wins} 🏆\n"               
             if i > 10:
@@ -40,7 +37,6 @@ class Leaderboard(commands.Cog):
         embed.add_field(name=f"Top 10:", value=win_str, inline=False)
         embed.set_thumbnail(url=interaction.guild.icon.url)
         await interaction.response.send_message(embed=embed)
-
 
 async def setup(client:commands.Bot):
     await client.add_cog(Leaderboard(client))
