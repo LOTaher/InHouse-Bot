@@ -47,8 +47,8 @@ class Menu(discord.ui.View):
     
     @discord.ui.button(label="Confirm", style=discord.ButtonStyle.green, emoji="✅")
     async def confirm(self, interaction: discord.Interaction, button: discord.ui.Button):
-        # role = discord.utils.get(interaction.guild.roles, id=DEVROLE)
-        # if role in interaction.user.roles:
+        role = discord.utils.get(interaction.guild.roles, id=1054481046864941077)
+        if role in interaction.user.roles:
 
             options = [
             discord.SelectOption(label="⚔️ Team 1", value="⚔️ Team 1"),
@@ -59,8 +59,8 @@ class Menu(discord.ui.View):
             view_select.add_item(select)
 
             await interaction.response.edit_message(view=view_select)
-        # else:
-        #     await interaction.response.send_message(f"{interaction.user.mention} only Laith, John and Victor are allowed to confirm the setup.", ephemeral=True)
+        else:
+            await interaction.response.send_message(f"{interaction.user.mention} only Laith, John and Victor are allowed to confirm the setup.", ephemeral=True)
         
     
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.gray, emoji="❌")
@@ -100,7 +100,7 @@ class Select(discord.ui.Select):
         return players
 
     async def log_game(self, team, winners, losers, author, guild):
-        channel = discord.utils.get(guild.channels, id = 1046941831184793700)
+        channel = discord.utils.get(guild.channels, id = 1054482861580877884)
         await channel.send(f"**Game results**:\n`Team 1:`\n{winners}\n`Team 2:`\n{losers}\n**Winning Team**: {team}\n**Game ended by**: {author.display_name}")
 
     async def callback(self, interaction: discord.Interaction):
