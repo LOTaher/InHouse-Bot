@@ -18,7 +18,7 @@ class Profile(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-    @app_commands.command(name = 'profile', description = 'View your own Church customs profile')
+    @app_commands.command(name = 'profile', description = 'View your own Church customs profile') # Change the command description. Include your own server instead.
     async def custom(self, interaction: discord.Interaction, user: discord.Member = None):
 
             user = user if user is not None else interaction.user

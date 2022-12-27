@@ -18,7 +18,7 @@ class Leaderboard(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-    @app_commands.command(name = 'leaderboard', description = 'Check out the Church Discord custom win leaderboard')
+    @app_commands.command(name = 'leaderboard', description = 'Check out the Church Discord custom win leaderboard') # Change the command description. Include your own server instead.
     async def lb(self, interaction: discord.Interaction):
         rankings = collection.find().sort("wins", -1)
         i = 1

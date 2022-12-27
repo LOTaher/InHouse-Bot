@@ -61,7 +61,7 @@ class Menu(discord.ui.View):
 
             await interaction.response.edit_message(view=view_select)
         else:
-            await interaction.response.send_message(f"{interaction.user.mention} only Laith, John and Victor are allowed to confirm the setup.", ephemeral=True)
+            await interaction.response.send_message(f"{interaction.user.mention} only Laith, John and Victor are allowed to confirm the setup.", ephemeral=True) # Custom Response
     
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.gray, emoji="❌")
     async def cancel(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -71,7 +71,7 @@ class Menu(discord.ui.View):
             await interaction.followup.send(f"{interaction.user.mention} canceled the setup.")
             await interaction.delete_original_response()
         else:
-            interaction.response.send_message(f"{interaction.user.mention} only Saints are allowed to cancel the setup.", ephemeral=True)
+            interaction.response.send_message(f"{interaction.user.mention} only Saints are allowed to cancel the setup.", ephemeral=True) # Custom Response
 
 class Select(discord.ui.Select):
     def __init__(self, options):
@@ -95,7 +95,7 @@ class Select(discord.ui.Select):
         players_str = players_str.replace('-', '')
         players_str = players_str.replace('"', '')       
         players = players_str.split('<@')
-        players.pop(0) # Remove the nothing part
+        players.pop(0)
         return players
 
     async def log_game(self, team, winners, losers, author, guild):
@@ -159,10 +159,10 @@ class InHouse(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-    @app_commands.command(name = 'custom', description = 'Request to begin a custom in the Church Discord')
+    @app_commands.command(name = 'custom', description = 'Request to begin a custom in the Church Discord') # Change the command description. Include your own server instead. 
     async def custom(self, interaction: discord.Interaction):
 
-        embed = discord.Embed(title=f"Summoner's Rift Custom Setup", description="Select which team you would like to join by pressing either button.")
+        embed = discord.Embed(title=f"Summoner's Rift Custom Setup", description="Select which team you would like to join by pressing either button.") # My embed title is League related. Change it to whatever you'd like.
         embed.add_field(name="Team 1 ⚔️", value="-\n-\n-\n-\n-", inline=True)
         embed.add_field(name="Team 2 ⚔️", value="-\n-\n-\n-\n-", inline=True)
         
