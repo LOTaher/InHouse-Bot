@@ -13,6 +13,7 @@ with open("config.json", "r") as f:
     MODROLE = data['MODROLE']
     DEVROLE = data['DEVROLE']
     DATABASE = data["DATABASE"]
+    LOGCHANNEL = data["LOGCHANNEL"]
 
 cluster = MongoClient(DATABASE)
 db = cluster['Wins']
@@ -61,7 +62,6 @@ class Menu(discord.ui.View):
             await interaction.response.edit_message(view=view_select)
         else:
             await interaction.response.send_message(f"{interaction.user.mention} only Laith, John and Victor are allowed to confirm the setup.", ephemeral=True)
-        
     
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.gray, emoji="❌")
     async def cancel(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -72,7 +72,6 @@ class Menu(discord.ui.View):
             await interaction.delete_original_response()
         else:
             interaction.response.send_message(f"{interaction.user.mention} only Saints are allowed to cancel the setup.", ephemeral=True)
-
 
 class Select(discord.ui.Select):
     def __init__(self, options):
@@ -100,7 +99,7 @@ class Select(discord.ui.Select):
         return players
 
     async def log_game(self, team, winners, losers, author, guild):
-        channel = discord.utils.get(guild.channels, id = 1054482861580877884)
+        channel = discord.utils.get(guild.channels, id = LOGCHANNEL)
         await channel.send(f"**Game results**:\n`Team 1:`\n{winners}\n`Team 2:`\n{losers}\n**Winning Team**: {team}\n**Game ended by**: {author.display_name}")
 
     async def callback(self, interaction: discord.Interaction):
@@ -118,11 +117,9 @@ class Select(discord.ui.Select):
         embed = discord.Embed(title="Congratulations to the winners!", description= "Added +1 🏆 to each member of the winning team's profile")
         embed.add_field(name = self.values[0], value = win_string )
 
-
         await interaction.message.edit(embed=embed, view=None)
         
         await interaction.response.send_message(f"Game ended successfully! ", ephemeral=True)
-
 
     async def add_win(self, winner):
             myquery = { "_id": winner }
@@ -156,9 +153,8 @@ class Select(discord.ui.Select):
                 filter = { "_id": loser}
                 update = { "$set": { "losses": losses }}
                 wins = wins
-                collection.update_one(filter, update)    
+                collection.update_one(filter, update)        
 
-        
 class InHouse(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
