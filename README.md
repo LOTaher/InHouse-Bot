@@ -24,7 +24,7 @@ You must also create a `config.JSON` file in the main directory. You can use thi
     "MODROLE": "", // Moderator Role Name or ID
     "OWNERID": "", // Your Discord ID
     "DEVROLE": "" // Developer (Mod+ / Admin) Role Name or ID
-    "LOGCHANNEL": "" // Log Channel ID
+    "LOGCHANNEL":  // Log Channel ID | This should not be a string
 }
 ```
 This bot was created and designed to be used in a single server. 
