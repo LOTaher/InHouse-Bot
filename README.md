@@ -16,7 +16,7 @@ This bot does not have a public invite link. If you really want to run an instan
 * Discord.py (https://github.com/Rapptz/discord.py)
 * A bot application (https://discordapp.com/developers/applications/me)
 
-You must also create a `config.JSON` file in the main directory. You can use this template:
+You must also create a `config.json` file in the main directory. You can use this template:
 ```javascript
 {
     "TOKEN": "", // Bot Token
