@@ -31,7 +31,7 @@ class Leaderboard(commands.Cog):
                 win_str += f"{emotes[i-1]} <@{x['_id']}>     |     {user_wins} 🏆\n"
             else:
                 win_str += f"{i}. <@{x['_id']}>     |     {user_wins} 🏆\n"               
-            if i > 10:
+            if i > 9:
                 break
             i += 1
         embed.add_field(name=f"Top 10:", value=win_str, inline=False)
